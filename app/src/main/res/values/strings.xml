@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Movie DB</string>
+
+    <string name="title_main">Main</string>
 </resources>
