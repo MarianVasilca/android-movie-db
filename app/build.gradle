@@ -13,7 +13,11 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
-        buildConfigField "String", "BASE_URL", "\"https://www.anapioficeandfire.com/api/\""
+        buildConfigField "String", "TMDB_BASE_URL", "\"https://api.themoviedb.org/3/\""
+        buildConfigField "String", "TMDB_IMAGE_BASE_URL", "\"https://image.tmdb.org/t/p/w500/\""
+
+        buildConfigField "String", "TMDB_API_KEY", "\"9bdc01e607782b2e9fb52f57cb77e7f8\""
+
     }
     buildTypes {
         release {
