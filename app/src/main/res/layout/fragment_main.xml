@@ -1,10 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clFiltersContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:padding="@dimen/paddingMedium">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/gHorizontal"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
+
+            <TextView
+                android:id="@+id/tvFilterTitleLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/filter_title_label"
+                android:textColor="@color/medium_gray"
+                android:textSize="@dimen/fsLarge"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/tvFilterGenreLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/marginMedium"
+                android:text="@string/filter_genre_label"
+                android:textColor="@color/medium_gray"
+                android:textSize="@dimen/fsLarge"
+                app:layout_constraintTop_toBottomOf="@id/tvFilterTitleLabel" />
+
+            <TextView
+                android:id="@+id/tvFilterReleaseDateLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/marginMedium"
+                android:text="@string/filter_release_date_label"
+                android:textColor="@color/medium_gray"
+                android:textSize="@dimen/fsLarge"
+                app:layout_constraintTop_toBottomOf="@id/tvFilterGenreLabel" />
+
+
+            <EditText
+                android:id="@+id/etFilterTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/gHorizontal"
+                app:layout_constraintTop_toTopOf="@+id/tvFilterTitleLabel" />
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/sFilterGenres"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                app:layout_constraintBottom_toTopOf="@+id/tvFilterByReleaseDate"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/gHorizontal"
+                app:layout_constraintTop_toTopOf="@+id/tvFilterGenreLabel" />
+
+            <TextView
+                android:id="@+id/tvFilterByReleaseDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/gHorizontal"
+                app:layout_constraintTop_toTopOf="@id/tvFilterReleaseDateLabel" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvMovies"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

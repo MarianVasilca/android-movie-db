@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="fsXXXXSmall">8sp</dimen>
+    <dimen name="fsXXXSmall">9sp</dimen>
+    <dimen name="fsXXSmall">10sp</dimen>
+    <dimen name="fsSmallest">11sp</dimen>
+    <dimen name="fsSmall">12sp</dimen>
+    <dimen name="fsMedium">14sp</dimen>
+    <dimen name="fsXMedium">16sp</dimen>
+    <dimen name="fsLarge">18sp</dimen>
+    <dimen name="fsXLarge">20sp</dimen>
+    <dimen name="fsXXLarge">25sp</dimen>
+    <dimen name="fsXXXLarge">30sp</dimen>
+    <dimen name="fsXXXXLarge">40sp</dimen>
+
+    <dimen name="paddingXSmall">2dp</dimen>
+    <dimen name="paddingSmallest">5dp</dimen>
+    <dimen name="paddingSmall">10dp</dimen>
+    <dimen name="paddingMedium">15dp</dimen>
+    <dimen name="paddingLarge">20dp</dimen>
+    <dimen name="paddingXLarge">25dp</dimen>
+    <dimen name="paddingXXLarge">30dp</dimen>
+    <dimen name="paddingXXXLarge">40dp</dimen>
+
+    <dimen name="margin_1dp">1dp</dimen>
+    <dimen name="marginXSmall">2dp</dimen>
+    <dimen name="marginSmallest">5dp</dimen>
+    <dimen name="marginSmall">10dp</dimen>
+    <dimen name="marginMedium">15dp</dimen>
+    <dimen name="marginLarge">20dp</dimen>
+    <dimen name="marginXLarge">25dp</dimen>
+    <dimen name="marginXXLarge">30dp</dimen>
+    <dimen name="marginXXXLarge">35dp</dimen>
+    <dimen name="marginLargest">50dp</dimen>
+    <dimen name="marginHuge">130dp</dimen>
+
+
+    <dimen name="filter_line_height_size">0.5dp</dimen>
+    <dimen name="filters_iv_height_size">20dp</dimen>
+
+</resources>
