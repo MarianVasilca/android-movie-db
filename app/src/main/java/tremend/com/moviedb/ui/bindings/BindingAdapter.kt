@@ -1,9 +1,9 @@
 package tremend.com.moviedb.ui.bindings
 
+import android.view.View
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 @BindingAdapter("imageFromUrl")
 fun imageFromUrl(view: ImageView, imageUrl: String?) {
@@ -15,6 +15,6 @@ fun imageFromUrl(view: ImageView, imageUrl: String?) {
 }
 
 @BindingAdapter("goneIf")
-fun goneIf(view: FloatingActionButton, isGone: Boolean?) {
-    if (isGone == null || isGone) view.hide() else view.show()
+fun goneIf(view: View, isGone: Boolean?) {
+    view.visibility = if (isGone == true) View.VISIBLE else View.GONE
 }

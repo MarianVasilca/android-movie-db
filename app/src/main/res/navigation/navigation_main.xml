@@ -8,6 +8,22 @@
         android:id="@+id/main_fragment"
         android:name="tremend.com.moviedb.ui.fragments.MainFragment"
         android:label="@string/title_main"
-        tools:layout="@layout/fragment_main" />
+        tools:layout="@layout/fragment_main">
+        <action
+            android:id="@+id/action_main_fragment_to_review_fragment"
+            app:destination="@id/review_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/review_fragment"
+        android:name="tremend.com.moviedb.ui.fragments.ReviewFragment"
+        android:label="@string/title_review"
+        tools:layout="@layout/fragment_review">
+
+        <argument
+            android:name="movie"
+            app:argType="tremend.com.moviedb.data.vo.Movie"
+            app:nullable="true" />
+    </fragment>
 
 </navigation>
