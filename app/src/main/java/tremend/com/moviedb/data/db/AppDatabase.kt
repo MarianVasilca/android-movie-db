@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import tremend.com.moviedb.data.db.dao.MovieDao
 import tremend.com.moviedb.data.vo.Movie
 import tremend.com.moviedb.utilities.DATABASE_NAME
@@ -16,6 +17,7 @@ import tremend.com.moviedb.utilities.DATABASE_NAME
         version = 1,
         exportSchema = false
 )
+@TypeConverters(LongListConverter::class)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun movieDao(): MovieDao
