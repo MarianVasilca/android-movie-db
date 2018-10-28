@@ -15,7 +15,10 @@ import tremend.com.moviedb.data.vo.MovieFilter
 import tremend.com.moviedb.data.vo.Status
 import tremend.com.moviedb.utilities.ALL_GENRE_ID
 import tremend.com.moviedb.utilities.ALL_GENRE_NAME
+import tremend.com.moviedb.utilities.DEFAULT_VOTE_VALUE
 import tremend.com.moviedb.utilities.schedulers.MainScheduler
+import java.util.*
+
 
 class MovieViewModel(
         app: Application,
@@ -31,10 +34,12 @@ class MovieViewModel(
     val genres = repository.loadGenres()
 
     private val filter = MediatorLiveData<MovieFilter>().apply {
-        value = MovieFilter(null, Genre(ALL_GENRE_ID, ALL_GENRE_NAME))
+        value = MovieFilter(null, Genre(ALL_GENRE_ID, ALL_GENRE_NAME), DEFAULT_VOTE_VALUE, null)
     }
     val selectedGenre = MutableLiveData<Genre>()
     val searchedTitle = MutableLiveData<String>()
+    val searchedVote = MutableLiveData<Int>()
+    val wasReleasedThisYear = MutableLiveData<Boolean>()
 
     val filteredMovies: LiveData<List<Movie>> = Transformations.switchMap(filter) { filter ->
         filter?.let {
@@ -42,7 +47,8 @@ class MovieViewModel(
         }
     }
     val isFilterActive = Transformations.map(filter) { filter ->
-        return@map (filter != null) && (!filter.title.isNullOrBlank() || filter.genre?.id != ALL_GENRE_ID)
+        return@map filter != null && (!filter.title.isNullOrBlank() || filter.genre?.id != ALL_GENRE_ID ||
+                wasReleasedThisYear.value != null || searchedVote.value != DEFAULT_VOTE_VALUE)
     }!!
 
     init {
@@ -52,6 +58,14 @@ class MovieViewModel(
         }
         filter.addSource(searchedTitle) { title ->
             filter.value?.title = title
+            filter.value = filter.value
+        }
+        filter.addSource(searchedVote) { vote ->
+            filter.value?.vote = vote
+            filter.value = filter.value
+        }
+        filter.addSource(wasReleasedThisYear) { releasedThisYear ->
+            filter.value?.year = if (releasedThisYear == true) Calendar.getInstance().get(Calendar.YEAR).toString() else ""
             filter.value = filter.value
         }
     }
@@ -66,10 +80,6 @@ class MovieViewModel(
 
     override fun retryRequest() {
         fetchMovies()
-    }
-
-    fun loadGenres(): LiveData<List<Genre>> {
-        return repository.loadGenres()
     }
 
     fun fetchGenres() {
@@ -87,6 +97,8 @@ class MovieViewModel(
     fun clearFilters() {
         searchedTitle.value = ""
         selectedGenre.value = Genre(ALL_GENRE_ID, ALL_GENRE_NAME)
+        searchedVote.value = 0
+        wasReleasedThisYear.value = null
     }
 
     override fun onCleared() {

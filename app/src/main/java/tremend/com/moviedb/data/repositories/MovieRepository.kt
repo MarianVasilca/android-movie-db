@@ -28,7 +28,9 @@ class MovieRepository constructor(
             genreId = filter.genre?.id?.toString() ?: ""
         }
 
-        return database.movieDao().searchItems(filter.title ?: "", genreId)
+
+        return database.movieDao().searchItems(filter.title ?: "", genreId, filter.vote, filter.year
+                ?: "")
     }
 
     fun fetchMovies(): Single<Unit> = Single.create { emitter ->

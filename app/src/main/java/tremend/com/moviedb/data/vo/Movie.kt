@@ -16,6 +16,7 @@ data class Movie(
         @SerializedName("original_title") val originalTitle: String?,
         @SerializedName("release_date") val releaseDate: String?,
         @SerializedName("poster_path") val posterPath: String?,
+        @SerializedName("vote_average") val voteAverage: Float,
         val title: String,
         val popularity: Float,
         val adult: Boolean,
