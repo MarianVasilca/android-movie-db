@@ -1,19 +1,24 @@
 package tremend.com.moviedb.ui.bindings
 
+import android.graphics.drawable.Drawable
 import android.view.View
 import android.widget.ImageView
-import android.widget.Spinner
 import androidx.databinding.BindingAdapter
-import androidx.databinding.InverseBindingAdapter
-import androidx.databinding.InverseBindingListener
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 
-@BindingAdapter("imageFromUrl")
-fun imageFromUrl(view: ImageView, imageUrl: String?) {
-    if (!imageUrl.isNullOrEmpty()) {
-        Glide.with(view.context)
+@BindingAdapter(value = ["imageUrl", "placeholder"], requireAll = false)
+fun setImageUrl(imageView: ImageView, imageUrl: String?, placeHolder: Drawable) {
+    if (imageUrl == null) {
+        imageView.setImageDrawable(placeHolder)
+    } else {
+        val requestOptions = RequestOptions()
+                .placeholder(placeHolder)
+                .error(placeHolder)
+        Glide.with(imageView.context)
+                .applyDefaultRequestOptions(requestOptions)
                 .load(imageUrl)
-                .into(view)
+                .into(imageView)
     }
 }
 
