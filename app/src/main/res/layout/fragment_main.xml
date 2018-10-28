@@ -27,8 +27,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:queryHint="@string/search_movie_by_title"
                 android:iconifiedByDefault="false"
+                android:queryHint="@string/search_movie_by_title"
                 app:iconifiedByDefault="false" />
 
             <ImageView
@@ -54,15 +54,6 @@
                 app:layout_constraintGuide_percent="0.5" />
 
             <TextView
-                android:id="@+id/tvFilterTitleLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/filter_title_label"
-                android:textColor="@color/medium_gray"
-                android:textSize="@dimen/fsLarge"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <TextView
                 android:id="@+id/tvFilterGenreLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -70,7 +61,7 @@
                 android:text="@string/filter_genre_label"
                 android:textColor="@color/medium_gray"
                 android:textSize="@dimen/fsLarge"
-                app:layout_constraintTop_toBottomOf="@id/tvFilterTitleLabel" />
+                app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/tvFilterReleaseDateLabel"
@@ -81,16 +72,6 @@
                 android:textColor="@color/medium_gray"
                 android:textSize="@dimen/fsLarge"
                 app:layout_constraintTop_toBottomOf="@id/tvFilterGenreLabel" />
-
-
-            <EditText
-                android:id="@+id/etFilterTitle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:maxLines="1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/gHorizontal"
-                app:layout_constraintTop_toTopOf="@+id/tvFilterTitleLabel" />
 
             <androidx.appcompat.widget.AppCompatSpinner
                 android:id="@+id/sFilterGenres"
@@ -119,7 +100,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tbMain" />
+            app:layout_constraintTop_toBottomOf="@+id/clFiltersContainer" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

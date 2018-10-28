@@ -10,12 +10,16 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 import tremend.com.moviedb.BuildConfig
+import tremend.com.moviedb.data.vo.GenresResponse
 import tremend.com.moviedb.data.vo.MoviesResponse
 
 interface ApiService {
 
     @GET("discover/movie")
     fun getMovies(@Query("sort_by") sortBy: String): Call<MoviesResponse>
+
+    @GET("genre/movie/list")
+    fun getGenres(): Call<GenresResponse>
 
     companion object {
         fun create(): ApiService {
