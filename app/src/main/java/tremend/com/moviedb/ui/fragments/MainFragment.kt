@@ -27,10 +27,16 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
         setupMovieAdapter()
         subscribeUI()
         viewModel.fetchMovies()
+        viewModel.fetchGenres()
     }
 
     private fun subscribeUI() {
         viewModel.loadMovies().observe(this, Observer { adapter?.submitList(it) })
+//        viewModel.loadGenres().observe(this, Observer {
+            //TODO submit list for spinner adapter
+//            adapter?.submitList(it)
+//        })
+
     }
 
     private fun setupMovieAdapter() {
