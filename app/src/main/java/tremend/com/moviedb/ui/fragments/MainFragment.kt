@@ -37,8 +37,10 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
         val layoutManager = LinearLayoutManager(activity!!, RecyclerView.VERTICAL, false)
         rvMovies.layoutManager = layoutManager
         adapter = MovieAdapter {
-            //TODO add arg movie
-            NavHostFragment.findNavController(this).navigate(R.id.action_main_fragment_to_review_fragment)
+            val action = MainFragmentDirections.actionMainFragmentToReviewFragment(it)
+            NavHostFragment
+                    .findNavController(this)
+                    .navigate(action)
         }
         rvMovies.adapter = adapter
     }

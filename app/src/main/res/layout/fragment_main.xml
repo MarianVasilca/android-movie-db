@@ -11,12 +11,40 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/tbMain"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:subtitleTextColor="@color/white"
+            app:titleTextColor="@color/white">
+
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/svMovies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:queryHint="@string/search_movie_by_title"
+                android:iconifiedByDefault="false"
+                app:iconifiedByDefault="false" />
+
+            <ImageView
+                android:id="@+id/ibToggleFilters"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_arrow_right_gray_24dp" />
+        </androidx.appcompat.widget.Toolbar>
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/clFiltersContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            android:padding="@dimen/paddingMedium">
+            android:padding="@dimen/paddingMedium"
+            app:layout_constraintTop_toBottomOf="@id/tbMain">
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/gHorizontal"
@@ -91,7 +119,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/tbMain" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
