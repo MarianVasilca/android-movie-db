@@ -8,4 +8,6 @@
     <dimen name="fsBody1">16sp</dimen>
     <dimen name="fsBody2">20sp</dimen>
 
+    <dimen name="elevation_small">2dp</dimen>
+    <dimen name="corner_radius">8dp</dimen>
 </resources>
