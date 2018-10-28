@@ -23,7 +23,7 @@ import java.util.*
 class MovieViewModel(
         app: Application,
         private val repository: MovieRepository,
-        private val mainScheduler: MainScheduler
+        mainScheduler: MainScheduler
 ) : BaseAndroidViewModel(app, mainScheduler) {
 
     private val compositeDisposable = CompositeDisposable()
@@ -70,7 +70,7 @@ class MovieViewModel(
         }
     }
 
-    fun fetchMovies() {
+    private fun fetchMovies() {
         fetchMoviesDisposable?.dispose()
         fetchMoviesDisposable = repository.fetchMovies()
                 .doOnSubscribe { setStatus(Status.LOADING) }
@@ -80,9 +80,10 @@ class MovieViewModel(
 
     override fun retryRequest() {
         fetchMovies()
+        fetchGenres()
     }
 
-    fun fetchGenres() {
+    private fun fetchGenres() {
         fetchGenresDisposable?.dispose()
         fetchGenresDisposable = repository.fetchGenres()
                 .doOnSubscribe { Timber.d("Loading") }

@@ -20,10 +20,10 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
         get() = R.layout.fragment_main
 
     override fun onBoundViews(savedInstanceState: Bundle?) {
-        // set the view model
-        getViewDataBinding().movieViewModel = viewModel
         setupMovieAdapter()
         viewModel.filteredMovies.observe(this, Observer { adapter?.submitList(it) })
+        // set the view model
+        getViewDataBinding().movieViewModel = viewModel
     }
 
     private fun setupMovieAdapter() {

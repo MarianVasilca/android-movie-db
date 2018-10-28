@@ -22,11 +22,6 @@ fun setImageUrl(imageView: ImageView, imageUrl: String?, placeHolder: Drawable) 
     }
 }
 
-@BindingAdapter("goneIf")
-fun goneIf(view: View, isGone: Boolean?) {
-    view.visibility = if (isGone == true) View.GONE else View.VISIBLE
-}
-
 @BindingAdapter("visibleIf")
 fun visibleIf(view: View, visibleIf: Boolean?) {
     view.visibility = if (visibleIf == true) View.VISIBLE else View.GONE

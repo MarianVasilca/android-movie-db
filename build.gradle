@@ -22,11 +22,11 @@ buildscript {
         ktxVersion = '1.0.0'
 
         // Third parties libraries
-        glideVersion = '4.7.1'
+        glideVersion = '4.8.0'
         gsonVersion = '2.8.2'
         retrofitVersion = '2.4.0'
         rxKotlinVersion = '2.2.0'
-        rxAndroidVersion = '2.0.2'
+        rxAndroidVersion = '2.1.0'
         koinVersion = '0.9.3'
         timberVersion = '4.7.1'
 

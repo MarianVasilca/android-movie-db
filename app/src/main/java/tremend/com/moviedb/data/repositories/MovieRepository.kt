@@ -11,13 +11,11 @@ import tremend.com.moviedb.data.vo.MovieFilter
 import tremend.com.moviedb.utilities.ALL_GENRE_ID
 import tremend.com.moviedb.utilities.ALL_GENRE_NAME
 import tremend.com.moviedb.utilities.schedulers.IoScheduler
-import tremend.com.moviedb.utilities.schedulers.MainScheduler
 import tremend.com.moviedb.utilities.schedulers.NetworkScheduler
 
 class MovieRepository constructor(
         private val apiService: ApiService,
         private val database: AppDatabase,
-        private val mainScheduler: MainScheduler,
         private val networkScheduler: NetworkScheduler,
         private val ioScheduler: IoScheduler
 ) {

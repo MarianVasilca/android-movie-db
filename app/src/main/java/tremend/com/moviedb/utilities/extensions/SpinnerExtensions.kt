@@ -24,10 +24,10 @@ object SpinnerExtensions {
      * set spinner onItemSelectedListener listener
      */
     fun AppCompatSpinner.setSpinnerItemSelectedListener(listener: ItemSelectedListener?) {
-        if (listener == null) {
-            onItemSelectedListener = null
+        onItemSelectedListener = if (listener == null) {
+            null
         } else {
-            onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
                     if (tag != position) {
                         listener.onItemSelected(parent.getItemAtPosition(position))
@@ -43,10 +43,10 @@ object SpinnerExtensions {
      * set spinner onItemSelectedListener listener
      */
     fun AppCompatSpinner.setSpinnerInverseBindingListener(listener: InverseBindingListener?) {
-        if (listener == null) {
-            onItemSelectedListener = null
+        onItemSelectedListener = if (listener == null) {
+            null
         } else {
-            onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
                     if (tag != position) {
                         listener.onChange()
@@ -77,6 +77,6 @@ object SpinnerExtensions {
     }
 
     interface ItemSelectedListener {
-        fun onItemSelected(item: Any)
+        fun onItemSelected(item: Any?)
     }
 }

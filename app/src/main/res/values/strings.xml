@@ -3,12 +3,9 @@
 
     <string name="title_main">Main</string>
     <string name="title_review">Review</string>
-    <string name="filter_title_label">Title</string>
     <string name="filter_genre_label">Genre</string>
-    <string name="filter_release_date_label">Release date</string>
     <string name="add_review">Add review</string>
     <string name="release_date">Release date: %1$s</string>
-    <string name="unknown">unknown</string>
     <string name="retry">Retry</string>
     <string name="rating">Rating</string>
     <string name="current_year">Released this year</string>
@@ -22,4 +19,6 @@
     <string name="error_no_internet">Please check your internet connection and try again</string>
     <string name="error_http">This is an HTTP error</string>
     <string name="remove_filters">Remove filters</string>
+
+    <string name="image_description">Image description</string>
 </resources>
