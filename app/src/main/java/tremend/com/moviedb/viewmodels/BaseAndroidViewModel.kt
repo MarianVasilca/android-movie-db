@@ -6,29 +6,34 @@ import androidx.lifecycle.MutableLiveData
 import retrofit2.HttpException
 import timber.log.Timber
 import tremend.com.moviedb.R
+import tremend.com.moviedb.data.vo.Status
 import tremend.com.moviedb.utilities.schedulers.MainScheduler
+import java.net.UnknownHostException
 
-open class BaseAndroidViewModel(
+abstract class BaseAndroidViewModel(
         val app: Application,
         private val mainScheduler: MainScheduler
 ) : AndroidViewModel(app) {
 
     val errorMessage = MutableLiveData<String>()
-    val isLoading = MutableLiveData<Boolean>()
+    val status = MutableLiveData<Status>()
 
     protected fun setErrorThrowable(throwable: Throwable) {
-        setLoading(false)
+        setStatus(Status.ERROR)
         val errorResource = when (throwable) {
             is HttpException -> R.string.error_http
+            is UnknownHostException -> R.string.error_no_internet
             else -> R.string.error_general
         }
         errorMessage.postValue(app.getString(errorResource))
     }
 
-    fun setLoading(isLoading: Boolean) {
-        Timber.d("Set loading $isLoading")
+    fun setStatus(status: Status) {
+        Timber.d("Set status $status")
         mainScheduler.runOnThread {
-            this.isLoading.value = isLoading
+            this.status.value = status
         }
     }
+
+    abstract fun retryRequest()
 }

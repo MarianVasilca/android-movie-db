@@ -9,6 +9,7 @@
     <string name="add_review">Add review</string>
     <string name="release_date">Release date: %1$s</string>
     <string name="unknown">unknown</string>
+    <string name="retry">Retry</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -16,6 +17,7 @@
 
     <!-- Errors -->
     <string name="error_general">Something went wrong. Please try again later</string>
+    <string name="error_no_internet">Please check your internet connection and try again</string>
     <string name="error_http">This is an HTTP error</string>
     <string name="remove_filters">Remove filters</string>
 </resources>

@@ -36,7 +36,7 @@ class MovieRepository constructor(
     }
 
     fun fetchMovies(): Single<Unit> = Single.create { emitter ->
-        apiService.getMovies("popularity.asc")
+        apiService.getMovies("popularity.desc")
                 .subscribeOn(networkScheduler.asRxScheduler())
                 .observeOn(ioScheduler.asRxScheduler())
                 .subscribeBy(

@@ -14,6 +14,7 @@ import tremend.com.moviedb.data.vo.Movie
 import tremend.com.moviedb.data.vo.MovieFilter
 import tremend.com.moviedb.utilities.ALL_GENRE_ID
 import tremend.com.moviedb.utilities.ALL_GENRE_NAME
+import tremend.com.moviedb.data.vo.Status
 import tremend.com.moviedb.utilities.schedulers.MainScheduler
 
 class MovieViewModel(
@@ -62,9 +63,17 @@ class MovieViewModel(
     fun fetchMovies() {
         fetchMoviesDisposable?.dispose()
         fetchMoviesDisposable = repository.fetchMovies()
-                .doOnSubscribe { setLoading(true) }
-                .subscribe({ setLoading(false) }, { setErrorThrowable(it) })
+                .doOnSubscribe { setStatus(Status.LOADING) }
+                .subscribe({ setStatus(Status.SUCCESS) }, { setErrorThrowable(it) })
         compositeDisposable.add(fetchMoviesDisposable!!)
+    }
+
+    override fun retryRequest() {
+        fetchMovies()
+    }
+
+    fun loadGenres(): LiveData<List<Genre>> {
+        return repository.loadGenres()
     }
 
     fun fetchGenres() {

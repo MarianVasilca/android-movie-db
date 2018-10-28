@@ -41,11 +41,13 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
     }
 
     private fun setupMovieAdapter() {
-        adapter = MovieAdapter {
-            val action = MainFragmentDirections.actionMainFragmentToReviewFragment(it)
-            NavHostFragment
-                    .findNavController(this)
-                    .navigate(action)
+        if (adapter == null) {
+            adapter = MovieAdapter {
+                val action = MainFragmentDirections.actionMainFragmentToReviewFragment(it)
+                NavHostFragment
+                        .findNavController(this)
+                        .navigate(action)
+            }
         }
         rvMovies.adapter = adapter
     }
