@@ -1,5 +1,6 @@
 package tremend.com.moviedb.data.db.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -23,7 +24,7 @@ interface MovieDao {
     fun insert(movie: Movie)
 
     @Query("SELECT * FROM movies")
-    fun listenForItems(): Flowable<List<Movie>>
+    fun listenForItems(): LiveData<List<Movie>>
 
     @Query("DELETE FROM movies")
     fun deleteItems()
