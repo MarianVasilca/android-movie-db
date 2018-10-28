@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
-import androidx.annotation.VisibleForTesting
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
@@ -23,7 +22,6 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
         viewDataBinding = DataBindingUtil.inflate(inflater, layoutResource, container, false)
         binding = AutoClearedValue(this)
         viewDataBinding.setLifecycleOwner(this)
-//        viewDataBinding.setLifecycleOwner(binding!!.fragment.viewLifecycleOwner)
         return viewDataBinding.root
     }
 

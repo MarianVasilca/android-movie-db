@@ -2,10 +2,7 @@ package tremend.com.moviedb.ui.bindings
 
 import android.view.View
 import android.widget.ImageView
-import android.widget.Spinner
 import androidx.databinding.BindingAdapter
-import androidx.databinding.InverseBindingAdapter
-import androidx.databinding.InverseBindingListener
 import com.bumptech.glide.Glide
 
 @BindingAdapter("imageFromUrl")

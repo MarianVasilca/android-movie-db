@@ -17,4 +17,5 @@
     <!-- Errors -->
     <string name="error_general">Something went wrong. Please try again later</string>
     <string name="error_http">This is an HTTP error</string>
+    <string name="remove_filters">Remove filters</string>
 </resources>

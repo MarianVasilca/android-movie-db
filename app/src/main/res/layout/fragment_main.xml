@@ -28,6 +28,7 @@
 
             <androidx.appcompat.widget.SearchView
                 android:id="@+id/svMovies"
+                query="@={movieViewModel.searchedTitle}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -39,11 +40,13 @@
                 android:id="@+id/ibToggleFilters"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:onClick="@{()->movieViewModel.toggleFiltersVisibility()}"
                 android:src="@drawable/ic_arrow_right_gray_24dp" />
         </androidx.appcompat.widget.Toolbar>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/clFiltersContainer"
+            visibleIf="@{movieViewModel.visibleFilters}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
@@ -67,33 +70,31 @@
                 android:textSize="@dimen/fsLarge"
                 app:layout_constraintStart_toStartOf="parent" />
 
-            <TextView
-                android:id="@+id/tvFilterReleaseDateLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/marginMedium"
-                android:text="@string/filter_release_date_label"
-                android:textColor="@color/medium_gray"
-                android:textSize="@dimen/fsLarge"
-                app:layout_constraintTop_toBottomOf="@id/tvFilterGenreLabel" />
-
             <androidx.appcompat.widget.AppCompatSpinner
                 android:id="@+id/sFilterGenres"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:maxLines="1"
-                app:layout_constraintBottom_toTopOf="@+id/tvFilterByReleaseDate"
+                android:spinnerMode="dialog"
+                app:entries="@{movieViewModel.genres}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/gHorizontal"
-                app:layout_constraintTop_toTopOf="@+id/tvFilterGenreLabel" />
+                app:layout_constraintTop_toTopOf="@+id/tvFilterGenreLabel"
+                app:selectedValue="@={movieViewModel.selectedGenre}" />
 
             <TextView
-                android:id="@+id/tvFilterByReleaseDate"
+                android:id="@+id/tvRemoveFilters"
+                visibleIf="@{movieViewModel.isFilterActive}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:background="@color/light_gray"
+                android:onClick="@{() -> movieViewModel.clearFilters()}"
+                android:padding="@dimen/paddingMedium"
+                android:text="@string/remove_filters"
+                android:textStyle="bold"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/gHorizontal"
-                app:layout_constraintTop_toTopOf="@id/tvFilterReleaseDateLabel" />
+                app:layout_constraintTop_toBottomOf="@id/sFilterGenres" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
