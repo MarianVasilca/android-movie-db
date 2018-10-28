@@ -1,5 +1,6 @@
 package tremend.com.moviedb.data.api
 
+import io.reactivex.Single
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -16,7 +17,7 @@ import tremend.com.moviedb.data.vo.MoviesResponse
 interface ApiService {
 
     @GET("discover/movie")
-    fun getMovies(@Query("sort_by") sortBy: String): Call<MoviesResponse>
+    fun getMovies(@Query("sort_by") sortBy: String): Single<MoviesResponse>
 
     @GET("genre/movie/list")
     fun getGenres(): Call<GenresResponse>
@@ -25,7 +26,12 @@ interface ApiService {
         fun create(): ApiService {
             val tmdbApiKeyInterceptor = Interceptor { chain ->
                 var request: Request = chain.request()
-                val url = request.url().newBuilder().addQueryParameter("api_key", BuildConfig.TMDB_API_KEY).build()
+                val url = request
+                        .url()
+                        .newBuilder()
+                        .addQueryParameter("api_key", BuildConfig.TMDB_API_KEY)
+                        .build()
+
                 request = request
                         .newBuilder()
                         .url(url)

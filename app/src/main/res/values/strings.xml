@@ -12,5 +12,9 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Errors -->
+    <string name="error_general">Something went wrong. Please try again later</string>
+    <string name="error_http">This is an HTTP error</string>
     <string name="search_movie_by_title">Search movie by title</string>
 </resources>
