@@ -15,24 +15,14 @@ import tremend.com.moviedb.viewmodels.MovieViewModel
  */
 class MainFragment : BaseFragment<FragmentMainBinding>() {
     private var adapter: MovieAdapter? = null
-
     private val viewModel: MovieViewModel by lazy { getViewModelByClass(clazz = MovieViewModel::class) }
-
     override val layoutResource: Int
         get() = R.layout.fragment_main
 
     override fun onBoundViews(savedInstanceState: Bundle?) {
-        setupMovieAdapter()
-        subscribeUI()
         // set the view model
         getViewDataBinding().movieViewModel = viewModel
-
-        // fetch the movies
-        viewModel.fetchMovies()
-        viewModel.fetchGenres()
-    }
-
-    private fun subscribeUI() {
+        setupMovieAdapter()
         viewModel.filteredMovies.observe(this, Observer { adapter?.submitList(it) })
     }
 

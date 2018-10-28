@@ -94,6 +94,11 @@ class MovieViewModel(
         compositeDisposable.add(fetchGenresDisposable!!)
     }
 
+    init {
+        fetchMovies()
+        fetchGenres()
+    }
+
     fun clearFilters() {
         searchedTitle.value = ""
         selectedGenre.value = Genre(ALL_GENRE_ID, ALL_GENRE_NAME)
