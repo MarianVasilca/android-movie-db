@@ -32,14 +32,45 @@
             app:layout_constraintTop_toTopOf="parent"
             app:visibleIf="@{viewModel.status == Status.LOADING}" />
 
-        <TextView
+        <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{viewModel.errorMessage}"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/spacing_large"
+            android:layout_marginEnd="@dimen/spacing_large"
+            android:background="@color/white"
+            android:padding="@dimen/spacing_medium"
+            app:cardCornerRadius="@dimen/corner_radius"
+            app:cardUseCompatPadding="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/pbLoading"
-            app:visibleIf="@{viewModel.status == Status.ERROR}" />
+            app:visibleIf="@{viewModel.status == Status.ERROR}">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="@dimen/spacing_medium">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="@{viewModel.errorMessage}"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/fsBody1" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:onClick="@{() -> viewModel.retryRequest()}"
+                    android:text="@string/retry" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

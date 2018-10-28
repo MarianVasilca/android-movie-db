@@ -8,8 +8,9 @@ import timber.log.Timber
 import tremend.com.moviedb.R
 import tremend.com.moviedb.data.vo.Status
 import tremend.com.moviedb.utilities.schedulers.MainScheduler
+import java.net.UnknownHostException
 
-open class BaseAndroidViewModel(
+abstract class BaseAndroidViewModel(
         val app: Application,
         private val mainScheduler: MainScheduler
 ) : AndroidViewModel(app) {
@@ -21,6 +22,7 @@ open class BaseAndroidViewModel(
         setStatus(Status.ERROR)
         val errorResource = when (throwable) {
             is HttpException -> R.string.error_http
+            is UnknownHostException -> R.string.error_no_internet
             else -> R.string.error_general
         }
         errorMessage.postValue(app.getString(errorResource))
@@ -32,4 +34,6 @@ open class BaseAndroidViewModel(
             this.status.value = status
         }
     }
+
+    abstract fun retryRequest()
 }

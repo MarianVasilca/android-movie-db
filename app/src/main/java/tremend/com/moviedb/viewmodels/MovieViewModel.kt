@@ -37,6 +37,10 @@ class MovieViewModel(
         compositeDisposable.add(fetchMoviesDisposable!!)
     }
 
+    override fun retryRequest() {
+        fetchMovies()
+    }
+
     fun loadGenres(): LiveData<List<Genre>> {
         return repository.loadGenres()
     }
