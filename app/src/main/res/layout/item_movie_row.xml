@@ -64,7 +64,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/marginMedium"
-            android:text="@{@string/release_date(item.releaseDate??@string/unkown)}"
+            android:text="@{@string/release_date(item.releaseDate)}"
             android:textColor="@color/medium_gray"
             app:layout_constraintStart_toStartOf="@+id/tvMovieOverview"
             app:layout_constraintTop_toBottomOf="@+id/tvMovieOverview"
