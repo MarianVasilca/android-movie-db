@@ -38,7 +38,7 @@ class MovieViewModel(
     }
     val selectedGenre = MutableLiveData<Genre>()
     val searchedTitle = MutableLiveData<String>()
-    val searchedVote = MutableLiveData<Int>()
+    val searchedVote = MutableLiveData<Float>()
     val wasReleasedThisYear = MutableLiveData<Boolean>()
 
     val filteredMovies: LiveData<List<Movie>> = Transformations.switchMap(filter) { filter ->
@@ -48,7 +48,7 @@ class MovieViewModel(
     }
     val isFilterActive = Transformations.map(filter) { filter ->
         return@map filter != null && (!filter.title.isNullOrBlank() || filter.genre?.id != ALL_GENRE_ID ||
-                wasReleasedThisYear.value != null || searchedVote.value != DEFAULT_VOTE_VALUE)
+                !filter.year.isNullOrBlank() || filter.vote != DEFAULT_VOTE_VALUE)
     }!!
 
     init {
@@ -61,7 +61,7 @@ class MovieViewModel(
             filter.value = filter.value
         }
         filter.addSource(searchedVote) { vote ->
-            filter.value?.vote = vote
+            filter.value?.vote = vote * 2f
             filter.value = filter.value
         }
         filter.addSource(wasReleasedThisYear) { releasedThisYear ->
@@ -97,7 +97,7 @@ class MovieViewModel(
     fun clearFilters() {
         searchedTitle.value = ""
         selectedGenre.value = Genre(ALL_GENRE_ID, ALL_GENRE_NAME)
-        searchedVote.value = 0
+        searchedVote.value = 0f
         wasReleasedThisYear.value = null
     }
 

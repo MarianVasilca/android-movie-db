@@ -23,7 +23,7 @@ interface MovieDao {
     fun insert(movie: Movie)
 
     @Query("SELECT * FROM movies WHERE title LIKE '%' || :title|| '%' AND genreIds LIKE '%' ||:genreId|| '%' AND voteAverage>:vote AND releaseDate LIKE :year|| '%'")
-    fun searchItems(title: String, genreId: String, vote: Int, year: String): LiveData<List<Movie>>
+    fun searchItems(title: String, genreId: String, vote: Float, year: String): LiveData<List<Movie>>
 
     @Query("DELETE FROM movies")
     fun deleteItems()

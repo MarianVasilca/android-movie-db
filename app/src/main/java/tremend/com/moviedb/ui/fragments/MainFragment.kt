@@ -34,16 +34,13 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
 
     private fun subscribeUI() {
         viewModel.filteredMovies.observe(this, Observer { adapter?.submitList(it) })
-
     }
 
     private fun setupMovieAdapter() {
         if (adapter == null) {
             adapter = MovieAdapter {
                 val action = MainFragmentDirections.actionMainFragmentToReviewFragment(it)
-                NavHostFragment
-                        .findNavController(this)
-                        .navigate(action)
+                NavHostFragment.findNavController(this).navigate(action)
             }
         }
         rvMovies.adapter = adapter
