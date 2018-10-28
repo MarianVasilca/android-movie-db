@@ -23,12 +23,8 @@ class MovieViewModel(
     fun fetchMovies() {
         fetchMoviesDisposable?.dispose()
         fetchMoviesDisposable = repository.fetchMovies()
-                .doOnSubscribe { Timber.d("Loading") }
-                .subscribe({
-                    Timber.d("Success fetch")
-                }, {
-                    Timber.d(it)
-                })
+                .doOnSubscribe { setLoading(true) }
+                .subscribe({ setLoading(false) }, { setErrorThrowable(it) })
         compositeDisposable.add(fetchMoviesDisposable!!)
     }
 
