@@ -12,9 +12,9 @@ import tremend.com.moviedb.data.repositories.MovieRepository
 import tremend.com.moviedb.data.vo.Genre
 import tremend.com.moviedb.data.vo.Movie
 import tremend.com.moviedb.data.vo.MovieFilter
+import tremend.com.moviedb.data.vo.Status
 import tremend.com.moviedb.utilities.ALL_GENRE_ID
 import tremend.com.moviedb.utilities.ALL_GENRE_NAME
-import tremend.com.moviedb.data.vo.Status
 import tremend.com.moviedb.utilities.schedulers.MainScheduler
 
 class MovieViewModel(
@@ -54,10 +54,6 @@ class MovieViewModel(
             filter.value?.title = title
             filter.value = filter.value
         }
-    }
-
-    fun loadMovies(): LiveData<List<Movie>> {
-        return repository.loadMovies()
     }
 
     fun fetchMovies() {

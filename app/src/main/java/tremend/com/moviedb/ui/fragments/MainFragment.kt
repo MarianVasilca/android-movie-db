@@ -33,10 +33,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
     }
 
     private fun subscribeUI() {
-        viewModel.loadMovies().observe(this, Observer { adapter?.submitList(it) })
-        viewModel.filteredMovies.observe(this, Observer {
-            adapter?.submitList(it)
-        })
+        viewModel.filteredMovies.observe(this, Observer { adapter?.submitList(it) })
 
     }
 

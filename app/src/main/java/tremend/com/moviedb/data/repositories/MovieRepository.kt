@@ -22,10 +22,6 @@ class MovieRepository constructor(
         private val ioScheduler: IoScheduler
 ) {
 
-    fun loadMovies(): LiveData<List<Movie>> {
-        return database.movieDao().listenForItems()
-    }
-
     fun searchMovies(filter: MovieFilter): LiveData<List<Movie>> {
         var genreId = ""
         if (filter.genre != null && filter.genre?.id != ALL_GENRE_ID) {

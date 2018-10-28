@@ -89,7 +89,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/light_gray"
                 android:onClick="@{() -> movieViewModel.clearFilters()}"
-                android:padding="@dimen/paddingMedium"
+                android:padding="@dimen/spacing_small"
                 android:text="@string/remove_filters"
                 android:textStyle="bold"
                 android:visibility="gone"
