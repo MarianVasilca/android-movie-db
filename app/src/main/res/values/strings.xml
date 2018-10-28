@@ -10,6 +10,8 @@
     <string name="release_date">Release date: %1$s</string>
     <string name="unknown">unknown</string>
     <string name="retry">Retry</string>
+    <string name="rating">Rating</string>
+    <string name="current_year">Released this year</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
