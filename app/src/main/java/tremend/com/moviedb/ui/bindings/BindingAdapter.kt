@@ -16,5 +16,10 @@ fun imageFromUrl(view: ImageView, imageUrl: String?) {
 
 @BindingAdapter("goneIf")
 fun goneIf(view: View, isGone: Boolean?) {
-    view.visibility = if (isGone == true) View.VISIBLE else View.GONE
+    view.visibility = if (isGone == true) View.GONE else View.VISIBLE
+}
+
+@BindingAdapter("visibleIf")
+fun visibleIf(view: View, visibleIf: Boolean?) {
+    view.visibility = if (visibleIf == true) View.VISIBLE else View.GONE
 }

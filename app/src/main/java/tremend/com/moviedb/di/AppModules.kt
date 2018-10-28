@@ -24,5 +24,5 @@ val appModules = applicationContext {
 
     bean { MovieRepository(get(), get(), get(), get(), get()) }
 
-    viewModel { MovieViewModel(get(), get()) }
+    viewModel { MovieViewModel(get(), get(), get()) }
 }

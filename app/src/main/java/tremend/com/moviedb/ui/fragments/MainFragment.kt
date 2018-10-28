@@ -3,8 +3,6 @@ package tremend.com.moviedb.ui.fragments
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.NavHostFragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_main.*
 import org.koin.android.architecture.ext.getViewModelByClass
 import tremend.com.moviedb.R
@@ -26,6 +24,10 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
     override fun onBoundViews(savedInstanceState: Bundle?) {
         setupMovieAdapter()
         subscribeUI()
+        // set the view model
+        getViewDataBinding().movieViewModel = viewModel
+
+        // fetch the movies
         viewModel.fetchMovies()
     }
 
@@ -34,8 +36,6 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
     }
 
     private fun setupMovieAdapter() {
-        val layoutManager = LinearLayoutManager(activity!!, RecyclerView.VERTICAL, false)
-        rvMovies.layoutManager = layoutManager
         adapter = MovieAdapter {
             val action = MainFragmentDirections.actionMainFragmentToReviewFragment(it)
             NavHostFragment

@@ -4,16 +4,17 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import retrofit2.HttpException
+import timber.log.Timber
 import tremend.com.moviedb.R
+import tremend.com.moviedb.utilities.schedulers.MainScheduler
 
-open class BaseAndroidViewModel(val app: Application) : AndroidViewModel(app) {
+open class BaseAndroidViewModel(
+        val app: Application,
+        private val mainScheduler: MainScheduler
+) : AndroidViewModel(app) {
 
-    private val errorMessage = MutableLiveData<String>()
-    private val isLoading = MutableLiveData<Boolean>()
-
-    fun getErrorMessageLiveData(): MutableLiveData<String> {
-        return errorMessage
-    }
+    val errorMessage = MutableLiveData<String>()
+    val isLoading = MutableLiveData<Boolean>()
 
     protected fun setErrorThrowable(throwable: Throwable) {
         setLoading(false)
@@ -25,6 +26,9 @@ open class BaseAndroidViewModel(val app: Application) : AndroidViewModel(app) {
     }
 
     fun setLoading(isLoading: Boolean) {
-        this.isLoading.postValue(isLoading)
+        Timber.d("Set loading $isLoading")
+        mainScheduler.runOnThread {
+            this.isLoading.value = isLoading
+        }
     }
 }

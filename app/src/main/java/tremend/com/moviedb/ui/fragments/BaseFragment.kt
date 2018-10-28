@@ -17,12 +17,13 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
     internal abstract val layoutResource: Int
 
     private lateinit var viewDataBinding: T
-    @VisibleForTesting
     var binding: AutoClearedValue<T>? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         viewDataBinding = DataBindingUtil.inflate(inflater, layoutResource, container, false)
         binding = AutoClearedValue(this)
+        viewDataBinding.setLifecycleOwner(this)
+//        viewDataBinding.setLifecycleOwner(binding!!.fragment.viewLifecycleOwner)
         return viewDataBinding.root
     }
 
@@ -30,6 +31,8 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         onBoundViews(savedInstanceState)
     }
+
+    fun getViewDataBinding(): T = viewDataBinding
 
     internal abstract fun onBoundViews(savedInstanceState: Bundle?)
 }

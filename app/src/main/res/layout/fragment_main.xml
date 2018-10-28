@@ -5,6 +5,10 @@
 
     <data>
 
+        <variable
+            name="movieViewModel"
+            type="tremend.com.moviedb.viewmodels.MovieViewModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -97,10 +101,15 @@
             android:id="@+id/rvMovies"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            app:layoutManager="LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/clFiltersContainer" />
+
+        <include
+            layout="@layout/loading_state"
+            app:viewModel="@{movieViewModel}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

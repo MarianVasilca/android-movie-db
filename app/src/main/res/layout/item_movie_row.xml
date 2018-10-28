@@ -40,10 +40,11 @@
 
         <ImageView
             android:id="@+id/ivPlus18"
-            goneIf="@{!item.adult}"
+            app:visibleIf="@{item.adult}"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:src="@drawable/plus_18"
+            android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@id/tvMovieOverview"
             app:layout_constraintEnd_toEndOf="parent" />
 

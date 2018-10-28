@@ -4,28 +4,26 @@
     <data>
 
         <variable
-            name="isLoading"
-            type="Boolean" />
-
-        <variable
-            name="data"
-            type="Object" />
+            name="viewModel"
+            type="tremend.com.moviedb.viewmodels.BaseAndroidViewModel" />
 
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/transparent"
+        android:clickable="true"
+        android:focusable="true"
         android:gravity="center"
         android:orientation="vertical"
-        app:goneIf="@{data != null}">
+        app:visibleIf="@{viewModel.isLoading}">
 
         <ProgressBar
             android:id="@+id/progress_bar"
             style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:goneIf="@{isLoading == false}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
