@@ -5,7 +5,9 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import tremend.com.moviedb.data.db.dao.GenreDao
 import tremend.com.moviedb.data.db.dao.MovieDao
+import tremend.com.moviedb.data.vo.Genre
 import tremend.com.moviedb.data.vo.Movie
 import tremend.com.moviedb.utilities.DATABASE_NAME
 
@@ -13,7 +15,7 @@ import tremend.com.moviedb.utilities.DATABASE_NAME
  * The Room database for this app
  */
 @Database(
-        entities = [Movie::class],
+        entities = [Movie::class, Genre::class],
         version = 1,
         exportSchema = false
 )
@@ -21,6 +23,7 @@ import tremend.com.moviedb.utilities.DATABASE_NAME
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun movieDao(): MovieDao
+    abstract fun genreDao(): GenreDao
 
     companion object {
         // For Singleton instantiation

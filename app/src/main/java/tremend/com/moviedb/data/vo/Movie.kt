@@ -12,4 +12,4 @@ data class Movie(@PrimaryKey val id: Long, val title: String, val popularity: Fl
                  @SerializedName("original_language") val originalLanguage: String?,
                  @SerializedName("genre_ids") val genreIds: List<Long>,
                  @SerializedName("original_title") val originalTitle: String?,
-                 val adult: Boolean, val overview: String?, val releaseDate: String?) : Parcelable
+                 val adult: Boolean, val overview: String?, @SerializedName("release_date") val releaseDate: String?) : Parcelable
