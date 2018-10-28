@@ -47,7 +47,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            android:padding="@dimen/paddingMedium"
+            android:padding="@dimen/spacing_small"
             app:layout_constraintTop_toBottomOf="@id/tbMain">
 
             <androidx.constraintlayout.widget.Guideline
@@ -61,20 +61,20 @@
                 android:id="@+id/tvFilterGenreLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/marginMedium"
+                android:layout_marginTop="@dimen/spacing_small"
                 android:text="@string/filter_genre_label"
                 android:textColor="@color/medium_gray"
-                android:textSize="@dimen/fsLarge"
+                android:textSize="@dimen/fsBody1"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/tvFilterReleaseDateLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/marginMedium"
+                android:layout_marginTop="@dimen/spacing_small"
                 android:text="@string/filter_release_date_label"
                 android:textColor="@color/medium_gray"
-                android:textSize="@dimen/fsLarge"
+                android:textSize="@dimen/fsBody1"
                 app:layout_constraintTop_toBottomOf="@id/tvFilterGenreLabel" />
 
             <androidx.appcompat.widget.AppCompatSpinner

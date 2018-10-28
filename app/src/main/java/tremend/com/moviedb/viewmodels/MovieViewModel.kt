@@ -5,9 +5,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
+import timber.log.Timber
 import tremend.com.moviedb.data.repositories.MovieRepository
 import tremend.com.moviedb.data.vo.Genre
 import tremend.com.moviedb.data.vo.Movie
+import tremend.com.moviedb.data.vo.Status
 import tremend.com.moviedb.utilities.schedulers.MainScheduler
 
 class MovieViewModel(
@@ -30,8 +32,8 @@ class MovieViewModel(
     fun fetchMovies() {
         fetchMoviesDisposable?.dispose()
         fetchMoviesDisposable = repository.fetchMovies()
-                .doOnSubscribe { setLoading(true) }
-                .subscribe({ setLoading(false) }, { setErrorThrowable(it) })
+                .doOnSubscribe { setStatus(Status.LOADING) }
+                .subscribe({ setStatus(Status.SUCCESS) }, { setErrorThrowable(it) })
         compositeDisposable.add(fetchMoviesDisposable!!)
     }
 

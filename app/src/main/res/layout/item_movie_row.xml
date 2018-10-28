@@ -14,7 +14,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/paddingMedium">
+        android:padding="@dimen/spacing_small">
 
         <ImageView
             android:id="@+id/ivMovieImage"
@@ -29,10 +29,10 @@
             android:id="@+id/tvMovieTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/marginMedium"
+            android:layout_margin="@dimen/spacing_small"
             android:text="@{item.title}"
             android:textColor="@color/black"
-            android:textSize="@dimen/fsLarge"
+            android:textSize="@dimen/fsBody2"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@id/ivMovieImage"
             app:layout_constraintTop_toTopOf="parent"
@@ -40,13 +40,13 @@
 
         <ImageView
             android:id="@+id/ivPlus18"
-            app:visibleIf="@{item.adult}"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:src="@drawable/plus_18"
             android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@id/tvMovieOverview"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:visibleIf="@{item.adult}" />
 
         <TextView
             android:id="@+id/tvMovieOverview"
@@ -64,7 +64,7 @@
             android:id="@+id/tvReleaseDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/marginMedium"
+            android:layout_marginTop="@dimen/spacing_small"
             android:text="@{@string/release_date(item.releaseDate)}"
             android:textColor="@color/medium_gray"
             app:layout_constraintStart_toStartOf="@+id/tvMovieOverview"
