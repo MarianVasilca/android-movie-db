@@ -16,7 +16,9 @@ package tremend.com.moviedb.ui.adapters
  * limitations under the License.
  */
 
+import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.AsyncDifferConfig
 import androidx.recyclerview.widget.DiffUtil
@@ -38,15 +40,23 @@ abstract class DataBoundListAdapter<T, V : ViewDataBinding>(
 ) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DataBoundViewHolder<V> {
         val binding = createBinding(parent)
+        addClickListeners(binding)
         return DataBoundViewHolder(binding)
     }
 
-    protected abstract fun createBinding(parent: ViewGroup): V
+    private fun createBinding(parent: ViewGroup): V = DataBindingUtil.inflate(
+            LayoutInflater.from(parent.context),
+            getItemLayout(),
+            parent,
+            false
+    )
 
     override fun onBindViewHolder(holder: DataBoundViewHolder<V>, position: Int) {
         bind(holder.binding, getItem(position))
         holder.binding.executePendingBindings()
     }
 
+    protected abstract fun getItemLayout(): Int
+    protected abstract fun addClickListeners(binding: V)
     protected abstract fun bind(binding: V, item: T)
 }
