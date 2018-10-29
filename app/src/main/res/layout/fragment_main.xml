@@ -1,10 +1,171 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="movieViewModel"
+            type="tremend.com.moviedb.viewmodels.MovieViewModel" />
+
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/tbMain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:title="@string/title_main"
+            app:titleTextColor="@color/white">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.appcompat.widget.SearchView
+                    android:id="@+id/svMovies"
+                    query="@={movieViewModel.searchedTitle}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/white"
+                    android:gravity="end"
+                    android:queryHint="@string/search_movie_by_title"
+                    app:backgroundTint="@color/white"
+                    app:iconifiedByDefault="true"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/ibToggleFilters"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/ibToggleFilters"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/white"
+                    android:contentDescription="@string/image_description"
+                    android:onClick="@{()->movieViewModel.toggleFiltersVisibility()}"
+                    android:padding="@dimen/spacing_medium"
+                    android:src="@drawable/ic_filter_list_black_24dp"
+                    app:backgroundTint="@color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clFiltersContainer"
+            visibleIf="@{movieViewModel.visibleFilters}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:elevation="@dimen/elevation_small"
+            android:padding="@dimen/spacing_small"
+            app:layout_constraintTop_toBottomOf="@id/tbMain">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/gHorizontal"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
+
+            <TextView
+                android:id="@+id/tvFilterGenreLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:text="@string/filter_genre_label"
+                android:textColor="@color/medium_gray"
+                android:textSize="@dimen/fsBody1"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/sFilterGenres"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:spinnerMode="dialog"
+                app:entries="@{movieViewModel.genres}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/gHorizontal"
+                app:layout_constraintTop_toTopOf="@+id/tvFilterGenreLabel"
+                app:selectedValue="@={movieViewModel.selectedGenre}" />
+
+            <TextView
+                android:id="@+id/tvRatingLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:text="@string/rating"
+                android:textColor="@color/medium_gray"
+                android:textSize="@dimen/fsBody1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvFilterGenreLabel"
+                app:layout_constraintTop_toTopOf="@+id/rbRating" />
+
+            <androidx.appcompat.widget.AppCompatRatingBar
+                android:id="@+id/rbRating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="5"
+                android:rating="@={movieViewModel.searchedVote}"
+                android:scaleX="0.6"
+                android:scaleY="0.6"
+                android:stepSize="0.25"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/gHorizontal"
+                app:layout_constraintTop_toBottomOf="@+id/sFilterGenres" />
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:checked="@={movieViewModel.wasReleasedThisYear}"
+                android:text="@string/current_year"
+                android:textColor="@color/medium_gray"
+                android:textSize="@dimen/fsBody1"
+                app:layout_constraintTop_toBottomOf="@+id/tvRatingLabel" />
+
+            <Button
+                android:id="@+id/tvRemoveFilters"
+                visibleIf="@{movieViewModel.isFilterActive}"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@color/light_gray"
+                android:onClick="@{() -> movieViewModel.clearFilters()}"
+                android:padding="@dimen/spacing_small"
+                android:text="@string/remove_filters"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rbRating" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvMovies"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/clFiltersContainer" />
+
+        <include
+            layout="@layout/loading_state"
+            app:viewModel="@{movieViewModel}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

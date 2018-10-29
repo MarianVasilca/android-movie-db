@@ -1,10 +1,10 @@
 package tremend.com.moviedb.data.db.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import io.reactivex.Flowable
 import tremend.com.moviedb.data.vo.Movie
 
 /**
@@ -22,8 +22,8 @@ interface MovieDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(movie: Movie)
 
-    @Query("SELECT * FROM movies")
-    fun listenForItems(): Flowable<List<Movie>>
+    @Query("SELECT * FROM movies WHERE title LIKE '%' || :title|| '%' AND genreIds LIKE '%' ||:genreId|| '%' AND voteAverage>:vote AND releaseDate LIKE :year|| '%'")
+    fun searchItems(title: String, genreId: String, vote: Float, year: String): LiveData<List<Movie>>
 
     @Query("DELETE FROM movies")
     fun deleteItems()

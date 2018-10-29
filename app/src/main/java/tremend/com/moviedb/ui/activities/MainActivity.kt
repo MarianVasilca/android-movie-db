@@ -1,12 +1,8 @@
 package tremend.com.moviedb.ui.activities
 
-import android.os.Bundle
 import tremend.com.moviedb.R
+import tremend.com.moviedb.databinding.ActivityMainBinding
 
-class MainActivity : BaseActivity() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-    }
+class MainActivity : BaseActivity<ActivityMainBinding>() {
+    override fun getLayoutResource(): Int = R.layout.activity_main
 }

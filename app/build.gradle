@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'androidx.navigation.safeargs'
 
 android {
     compileSdkVersion 28
@@ -10,10 +11,12 @@ android {
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
-        versionName "1.0"
+        versionName "0.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
-        buildConfigField "String", "BASE_URL", "\"https://www.anapioficeandfire.com/api/\""
+        buildConfigField "String", "TMDB_BASE_URL", "\"https://api.themoviedb.org/3/\""
+        buildConfigField "String", "TMDB_IMAGE_BASE_URL", "\"https://image.tmdb.org/t/p/w500/\""
+        buildConfigField "String", "TMDB_API_KEY", "\"9bdc01e607782b2e9fb52f57cb77e7f8\""
     }
     buildTypes {
         release {
@@ -26,6 +29,9 @@ android {
     dataBinding {
         enabled = true
     }
+    androidExtensions {
+        experimental = true
+    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -34,10 +40,6 @@ android {
         variant.outputs.all {
             outputFileName = "movie-db-${variant.name}-v${variant.versionName}.apk"
         }
-    }
-
-    androidExtensions {
-        experimental = true
     }
 }
 

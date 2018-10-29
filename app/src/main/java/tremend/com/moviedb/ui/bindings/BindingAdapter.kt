@@ -1,20 +1,28 @@
 package tremend.com.moviedb.ui.bindings
 
+import android.graphics.drawable.Drawable
+import android.view.View
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.bumptech.glide.request.RequestOptions
 
-@BindingAdapter("imageFromUrl")
-fun imageFromUrl(view: ImageView, imageUrl: String?) {
-    if (!imageUrl.isNullOrEmpty()) {
-        Glide.with(view.context)
+@BindingAdapter(value = ["imageUrl", "placeholder"], requireAll = false)
+fun setImageUrl(imageView: ImageView, imageUrl: String?, placeHolder: Drawable) {
+    if (imageUrl == null) {
+        imageView.setImageDrawable(placeHolder)
+    } else {
+        val requestOptions = RequestOptions()
+                .placeholder(placeHolder)
+                .error(placeHolder)
+        Glide.with(imageView.context)
+                .applyDefaultRequestOptions(requestOptions)
                 .load(imageUrl)
-                .into(view)
+                .into(imageView)
     }
 }
 
-@BindingAdapter("goneIf")
-fun goneIf(view: FloatingActionButton, isGone: Boolean?) {
-    if (isGone == null || isGone) view.hide() else view.show()
+@BindingAdapter("visibleIf")
+fun visibleIf(view: View, visibleIf: Boolean?) {
+    view.visibility = if (visibleIf == true) View.VISIBLE else View.GONE
 }
