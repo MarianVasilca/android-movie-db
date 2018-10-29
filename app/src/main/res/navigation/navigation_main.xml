@@ -10,7 +10,7 @@
         android:label="@string/title_main"
         tools:layout="@layout/fragment_main">
         <action
-            android:id="@+id/action_main_fragment_to_review_fragment"
+            android:id="@+id/action_main_to_review"
             app:destination="@id/review_fragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"

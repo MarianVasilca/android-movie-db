@@ -17,13 +17,13 @@
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/tbMain"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:subtitleTextColor="@color/white"
+            app:title="@string/title_main"
             app:titleTextColor="@color/white">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -47,9 +47,9 @@
                 <ImageView
                     android:id="@+id/ibToggleFilters"
                     android:layout_width="wrap_content"
-                    android:contentDescription="@string/image_description"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/white"
+                    android:contentDescription="@string/image_description"
                     android:onClick="@{()->movieViewModel.toggleFiltersVisibility()}"
                     android:padding="@dimen/spacing_medium"
                     android:src="@drawable/ic_filter_list_black_24dp"

@@ -12,14 +12,11 @@ import tremend.com.moviedb.utilities.AutoClearedValue
 
 abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
 
-    @get:LayoutRes
-    internal abstract val layoutResource: Int
-
     private lateinit var viewDataBinding: T
     var binding: AutoClearedValue<T>? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        viewDataBinding = DataBindingUtil.inflate(inflater, layoutResource, container, false)
+        viewDataBinding = DataBindingUtil.inflate(inflater, getLayoutResource(), container, false)
         binding = AutoClearedValue(this)
         viewDataBinding.setLifecycleOwner(this)
         return viewDataBinding.root
@@ -33,4 +30,6 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
     fun getViewDataBinding(): T = viewDataBinding
 
     internal abstract fun onBoundViews(savedInstanceState: Bundle?)
+    @LayoutRes
+    internal abstract fun getLayoutResource(): Int
 }
