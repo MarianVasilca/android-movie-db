@@ -6,7 +6,7 @@ import androidx.databinding.InverseBindingListener
 
 object SearchViewExtensions {
     /**
-     * set spinner onItemSelectedListener listener
+     * set search viw on query text change listener
      */
     fun SearchView.setSearchViewInverseBindingListener(listener: InverseBindingListener?) {
         if (listener == null) {
@@ -14,10 +14,7 @@ object SearchViewExtensions {
         } else {
             setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
-                    if (tag != query) {
-                        listener.onChange()
-                    }
-                    return true
+                    return false
                 }
 
                 override fun onQueryTextChange(newText: String?): Boolean {
@@ -29,9 +26,5 @@ object SearchViewExtensions {
             })
 
         }
-    }
-
-    interface QueryListener {
-        fun onQueryChanged(value: String)
     }
 }

@@ -28,9 +28,9 @@ object SpinnerExtensions {
             null
         } else {
             object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                     if (tag != position) {
-                        listener.onItemSelected(parent.getItemAtPosition(position))
+                        listener.onItemSelected(parent?.getItemAtPosition(position))
                     }
                 }
 
@@ -47,7 +47,7 @@ object SpinnerExtensions {
             null
         } else {
             object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                     if (tag != position) {
                         listener.onChange()
                     }
