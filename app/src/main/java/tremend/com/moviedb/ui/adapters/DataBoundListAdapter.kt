@@ -21,6 +21,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.AsyncDifferConfig
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
+import java.util.concurrent.Executors
 
 /**
  * A generic RecyclerView adapter that uses Data Binding & DiffUtil.
@@ -32,6 +33,7 @@ abstract class DataBoundListAdapter<T, V : ViewDataBinding>(
         diffCallback: DiffUtil.ItemCallback<T>
 ) : ListAdapter<T, DataBoundViewHolder<V>>(
         AsyncDifferConfig.Builder<T>(diffCallback)
+                .setBackgroundThreadExecutor(Executors.newSingleThreadExecutor())
                 .build()
 ) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DataBoundViewHolder<V> {

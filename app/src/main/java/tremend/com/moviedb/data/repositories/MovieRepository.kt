@@ -10,6 +10,7 @@ import tremend.com.moviedb.data.vo.Movie
 import tremend.com.moviedb.data.vo.MovieFilter
 import tremend.com.moviedb.utilities.ALL_GENRE_ID
 import tremend.com.moviedb.utilities.ALL_GENRE_NAME
+import tremend.com.moviedb.utilities.DEFAULT_SORT_TYPE
 import tremend.com.moviedb.utilities.schedulers.IoScheduler
 import tremend.com.moviedb.utilities.schedulers.NetworkScheduler
 
@@ -26,13 +27,12 @@ class MovieRepository constructor(
             genreId = filter.genre?.id?.toString() ?: ""
         }
 
-
-        return database.movieDao().searchItems(filter.title ?: "", genreId, filter.vote, filter.year
-                ?: "")
+        return database.movieDao().searchItems(filter.title ?: "", genreId, filter.vote,
+                filter.year ?: "")
     }
 
     fun fetchMovies(): Single<Unit> = Single.create { emitter ->
-        apiService.getMovies("revenue.desc")
+        apiService.getMovies(DEFAULT_SORT_TYPE)
                 .subscribeOn(networkScheduler.asRxScheduler())
                 .observeOn(ioScheduler.asRxScheduler())
                 .subscribeBy(
@@ -44,7 +44,6 @@ class MovieRepository constructor(
                             emitter.onError(it)
                         }
                 )
-
     }
 
     fun loadGenres(): LiveData<List<Genre>> {

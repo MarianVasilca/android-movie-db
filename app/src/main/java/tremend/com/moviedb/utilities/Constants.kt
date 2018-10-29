@@ -10,3 +10,5 @@ const val ALL_GENRE_NAME = "All"
 
 
 const val DEFAULT_VOTE_VALUE = 0f
+
+const val DEFAULT_SORT_TYPE = "revenue.desc"

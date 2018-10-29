@@ -20,7 +20,6 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
     override fun onBoundViews(savedInstanceState: Bundle?) {
         rvMovies.adapter = adapter
         viewModel.filteredMovies.observe(this, Observer { adapter.submitList(it) })
-        // set the view model
         getViewDataBinding().movieViewModel = viewModel
     }
 }

@@ -87,11 +87,7 @@ class MovieViewModel(
         fetchGenresDisposable?.dispose()
         fetchGenresDisposable = repository.fetchGenres()
                 .doOnSubscribe { Timber.d("Loading") }
-                .subscribe({
-                    Timber.d("Success fetch")
-                }, {
-                    Timber.d(it)
-                })
+                .subscribe({ Timber.d("Success fetch") }, { Timber.d(it) })
         compositeDisposable.add(fetchGenresDisposable!!)
     }
 
