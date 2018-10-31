@@ -21,4 +21,6 @@
     <string name="remove_filters">Remove filters</string>
 
     <string name="image_description">Image description</string>
+    <string name="unkown">unkown</string>
+
 </resources>

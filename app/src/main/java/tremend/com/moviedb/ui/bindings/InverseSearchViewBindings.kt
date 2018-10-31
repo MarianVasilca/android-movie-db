@@ -4,27 +4,19 @@ import androidx.appcompat.widget.SearchView
 import androidx.databinding.BindingAdapter
 import androidx.databinding.InverseBindingAdapter
 import androidx.databinding.InverseBindingListener
-import tremend.com.moviedb.utilities.extensions.SearchViewExtensions.setSearchViewInverseBindingListener
+import tremend.com.moviedb.utilities.extensions.setSearchViewInverseBindingListener
 
+@BindingAdapter("query")
+fun setQuery(view: SearchView, searchQuery: String?) {
+    view.setQuery(searchQuery, false)
+}
 
-class InverseSearchViewBindings {
+@BindingAdapter("queryAttrChanged")
+fun setInverseBindingListener(view: SearchView, inverseBindingListener: InverseBindingListener?) {
+    view.setSearchViewInverseBindingListener(inverseBindingListener)
+}
 
-    @BindingAdapter("query")
-    fun SearchView.setQuery(searchQuery: String?) {
-        setQuery(searchQuery, false)
-    }
-
-    @BindingAdapter("queryAttrChanged")
-    fun SearchView.setInverseBindingListener(inverseBindingListener: InverseBindingListener?) {
-        setSearchViewInverseBindingListener(inverseBindingListener)
-    }
-
-    companion object InverseSearchViewBindings {
-
-        @JvmStatic
-        @InverseBindingAdapter(attribute = "query", event = "queryAttrChanged")
-        fun SearchView.getQuery(): String? {
-            return query.toString()
-        }
-    }
+@InverseBindingAdapter(attribute = "query", event = "queryAttrChanged")
+fun getQuery(view: SearchView): String? {
+    return view.query.toString()
 }
