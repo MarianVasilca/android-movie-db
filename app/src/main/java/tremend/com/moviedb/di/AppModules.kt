@@ -1,8 +1,7 @@
 package tremend.com.moviedb.di
 
-import android.app.Application
-import org.koin.android.architecture.ext.viewModel
-import org.koin.dsl.module.applicationContext
+import org.koin.androidx.viewmodel.ext.koin.viewModel
+import org.koin.dsl.module.module
 import tremend.com.moviedb.data.api.ApiService
 import tremend.com.moviedb.data.db.AppDatabase
 import tremend.com.moviedb.data.repositories.MovieRepository
@@ -11,18 +10,27 @@ import tremend.com.moviedb.utilities.schedulers.MainScheduler
 import tremend.com.moviedb.utilities.schedulers.NetworkScheduler
 import tremend.com.moviedb.viewmodels.MovieViewModel
 
-val appModules = applicationContext {
+val appModules = module {
 
-    bean { it as Application }
 
-    bean { AppDatabase.getInstance(get()) }
-    bean { ApiService.create() }
+    /**
+     * Declaring a singleton component means that Koin container will keep a unique instance of your declared component.
+     * Use the single function in a module to declare a singleton.
+     * single & factory keywords help you declare your components through a lambda expression.
+     * this lambda describe the way that you build your component.
+     * Usually we instantiate components via their constructors, but you can also use any expression.
+     * factory or single { Class constructor / expression }
+     * The result type of your lambda is the main type of your component
+     */
 
-    bean { IoScheduler() }
-    bean { MainScheduler() }
-    bean { NetworkScheduler() }
+    single { AppDatabase.getInstance(get()) }
+    single { ApiService.create() }
 
-    bean { MovieRepository(get(), get(), get(), get()) }
+    single { IoScheduler() }
+    single { MainScheduler() }
+    single { NetworkScheduler() }
+
+    single { MovieRepository(get(), get(), get(), get()) }
 
     viewModel { MovieViewModel(get(), get(), get()) }
 }

@@ -70,8 +70,12 @@ dependencies {
 
     // Third parties libraries
     //di
-    implementation "org.koin:koin-android:$koinVersion"
-    implementation "org.koin:koin-android-architecture:$koinVersion"
+    // Koin for Android
+    implementation "org.koin:koin-android:$rootProject.koinVersion"
+    // or Koin for Lifecycle scoping
+    implementation "org.koin:koin-androidx-scope:$rootProject.koinVersion"
+    // or Koin for Android Architecture ViewModel
+    implementation "org.koin:koin-androidx-viewmodel:$rootProject.koinVersion"
     // Retrofit
     implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofitVersion"

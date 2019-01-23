@@ -3,7 +3,7 @@ package tremend.com.moviedb.ui.fragments
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import kotlinx.android.synthetic.main.fragment_main.*
-import org.koin.android.architecture.ext.getViewModelByClass
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import tremend.com.moviedb.R
 import tremend.com.moviedb.databinding.FragmentMainBinding
 import tremend.com.moviedb.ui.adapters.MovieAdapter
@@ -15,7 +15,11 @@ import tremend.com.moviedb.viewmodels.MovieViewModel
  */
 class MainFragment : BaseFragment<FragmentMainBinding>() {
     private var adapter = MovieAdapter { nav(MainFragmentDirections.actionMainToReview(it)) }
-    private val viewModel: MovieViewModel by lazy { getViewModelByClass(clazz = MovieViewModel::class) }
+
+    /**
+     * Lazy delegate property to inject a ViewModel into a property
+     */
+    private val viewModel: MovieViewModel by viewModel()
     override fun getLayoutResource(): Int = R.layout.fragment_main
     override fun onBoundViews(savedInstanceState: Bundle?) {
         rvMovies.adapter = adapter
