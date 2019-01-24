@@ -5,6 +5,7 @@ import org.koin.dsl.module.module
 import tremend.com.moviedb.data.api.ApiService
 import tremend.com.moviedb.data.db.AppDatabase
 import tremend.com.moviedb.data.repositories.MovieRepository
+import tremend.com.moviedb.ui.adapters.MovieAdapter
 import tremend.com.moviedb.utilities.schedulers.IoScheduler
 import tremend.com.moviedb.utilities.schedulers.MainScheduler
 import tremend.com.moviedb.utilities.schedulers.NetworkScheduler
@@ -29,6 +30,13 @@ val appModules = module {
     single { IoScheduler() }
     single { MainScheduler() }
     single { NetworkScheduler() }
+
+    /**
+     * in case you are using the same adapter simultaneously in 2 fragments and want different
+     * callback actions, change from 'single' to 'factory' to give each fragment a different
+     * instance of MovieAdapter
+     */
+    single { MovieAdapter() }
 
     single { MovieRepository(get(), get(), get(), get()) }
 
