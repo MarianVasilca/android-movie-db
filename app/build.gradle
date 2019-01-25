@@ -85,6 +85,11 @@ dependencies {
     // Timber
     implementation "com.jakewharton.timber:timber:$rootProject.timberVersion"
 
+
+    //Dagger 2
+    implementation "com.google.dagger:dagger:$rootProject.daggerVersion"
+    kapt "com.google.dagger:dagger-compiler:$rootProject.daggerVersion"
+
     // Testing
     testImplementation "junit:junit:$rootProject.junitVersion"
     androidTestImplementation "androidx.test:runner:$rootProject.runnerVersion"
