@@ -4,11 +4,12 @@ import android.os.Bundle
 import androidx.lifecycle.Observer
 import kotlinx.android.synthetic.main.fragment_main.*
 import org.koin.android.ext.android.inject
+import org.koin.androidx.scope.ext.android.bindScope
+import org.koin.androidx.scope.ext.android.getOrCreateScope
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import tremend.com.moviedb.R
 import tremend.com.moviedb.databinding.FragmentMainBinding
 import tremend.com.moviedb.ui.adapters.MovieAdapter
-import tremend.com.moviedb.utilities.extensions.nav
 import tremend.com.moviedb.viewmodels.MovieViewModel
 
 /**
@@ -25,7 +26,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
 
     override fun getLayoutResource(): Int = R.layout.fragment_main
     override fun onBoundViews(savedInstanceState: Bundle?) {
-        adapter.callback = { nav(MainFragmentDirections.actionMainToReview(it)) }
+        bindScope(getOrCreateScope("sessionMovieAdapter"))
         rvMovies.adapter = adapter
         viewModel.filteredMovies.observe(this, Observer { adapter.submitList(it) })
         getViewDataBinding().movieViewModel = viewModel

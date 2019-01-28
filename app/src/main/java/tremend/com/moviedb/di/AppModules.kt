@@ -32,11 +32,9 @@ val appModules = module {
     single { NetworkScheduler() }
 
     /**
-     * in case you are using the same adapter simultaneously in 2 fragments and want different
-     * callback actions, change from 'single' to 'factory' to give each fragment a different
-     * instance of MovieAdapter
+     * the adapter is tied with the scope lifetime
      */
-    single { MovieAdapter() }
+    scope("sessionMovieAdapter") { MovieAdapter() }
 
     single { MovieRepository(get(), get(), get(), get()) }
 
