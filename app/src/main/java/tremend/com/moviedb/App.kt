@@ -1,21 +1,28 @@
 package tremend.com.moviedb
 
-import android.app.Application
-import org.koin.android.ext.android.startKoin
+import dagger.android.AndroidInjector
+import dagger.android.support.DaggerApplication
 import timber.log.Timber
-import tremend.com.moviedb.di.appModules
+import tremend.com.moviedb.di.DaggerAppComponent
 
-class App : Application() {
+
+class AndroidApp : DaggerApplication() {
+    override fun applicationInjector(): AndroidInjector<out DaggerApplication>? {
+        return DaggerAppComponent
+                .builder().create(this)
+    }
+
 
     override fun onCreate() {
         super.onCreate()
 
-        // start injecting with koin
-        startKoin(this, listOf(appModules))
+//        // start injecting with koin
+//        startKoin(this, listOf(appModules))
 
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
         }
 
     }
+
 }

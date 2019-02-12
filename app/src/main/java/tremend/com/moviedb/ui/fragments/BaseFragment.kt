@@ -7,10 +7,10 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import androidx.fragment.app.Fragment
+import dagger.android.support.DaggerFragment
 import tremend.com.moviedb.utilities.AutoClearedValue
 
-abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
+abstract class BaseFragment<T : ViewDataBinding> : DaggerFragment() {
 
     private lateinit var viewDataBinding: T
     var binding: AutoClearedValue<T>? = null

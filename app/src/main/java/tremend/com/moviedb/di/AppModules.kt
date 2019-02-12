@@ -1,28 +1,74 @@
 package tremend.com.moviedb.di
 
-import android.app.Application
-import org.koin.android.architecture.ext.viewModel
+import dagger.Module
+import dagger.Provides
 import org.koin.dsl.module.applicationContext
+import tremend.com.moviedb.AndroidApp
 import tremend.com.moviedb.data.api.ApiService
 import tremend.com.moviedb.data.db.AppDatabase
 import tremend.com.moviedb.data.repositories.MovieRepository
 import tremend.com.moviedb.utilities.schedulers.IoScheduler
 import tremend.com.moviedb.utilities.schedulers.MainScheduler
 import tremend.com.moviedb.utilities.schedulers.NetworkScheduler
-import tremend.com.moviedb.viewmodels.MovieViewModel
+import javax.inject.Singleton
 
 val appModules = applicationContext {
 
-    bean { it as Application }
+    //    bean { it as Application }
+//
+//    bean { AppDatabase.getInstance(get()) }
+//    bean { ApiService.create() }
+//
+//    bean { IoScheduler() }
+//    bean { MainScheduler() }
+//    bean { NetworkScheduler() }
+//
+//    bean { MovieRepository(get(), get(), get(), get()) }
+//
+//    viewModel { MovieViewModel(get(), get(), get()) }
+}
 
-    bean { AppDatabase.getInstance(get()) }
-    bean { ApiService.create() }
+@Module(includes = arrayOf(ViewModelModule::class, ContextModule::class))
+public class AppModule {
 
-    bean { IoScheduler() }
-    bean { MainScheduler() }
-    bean { NetworkScheduler() }
+    @Provides
+    @Singleton
+    fun provideDatabase(application: AndroidApp): AppDatabase {
+        return AppDatabase.getInstance(application)
+    }
 
-    bean { MovieRepository(get(), get(), get(), get()) }
+    @Provides
+    @Singleton
+    fun provideApiService(): ApiService {
+        return ApiService.create()
+    }
 
-    viewModel { MovieViewModel(get(), get(), get()) }
+
+    @Provides
+    @Singleton
+    fun provideIoScheduler(): IoScheduler {
+        return IoScheduler()
+    }
+
+    @Provides
+    @Singleton
+    fun provideMainScheduler(): MainScheduler {
+        return MainScheduler()
+    }
+
+    @Provides
+    @Singleton
+    fun provideNetworkScheduler(): NetworkScheduler {
+        return NetworkScheduler()
+    }
+
+    @Provides
+    @Singleton
+    fun provideMovieRepository(apiService: ApiService,
+                               database: AppDatabase,
+                               networkScheduler: NetworkScheduler,
+                               ioScheduler: IoScheduler): MovieRepository {
+        return MovieRepository(apiService, database, networkScheduler, ioScheduler)
+    }
+
 }

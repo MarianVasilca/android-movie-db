@@ -10,6 +10,7 @@ import tremend.com.moviedb.data.db.dao.MovieDao
 import tremend.com.moviedb.data.vo.Genre
 import tremend.com.moviedb.data.vo.Movie
 import tremend.com.moviedb.utilities.DATABASE_NAME
+import javax.inject.Inject
 
 /**
  * The Room database for this app
@@ -30,6 +31,7 @@ abstract class AppDatabase : RoomDatabase() {
         @Volatile
         private var instance: AppDatabase? = null
 
+        @Inject
         fun getInstance(context: Context): AppDatabase {
             return instance ?: synchronized(this) {
                 instance ?: buildDatabase(context).also { instance = it }

@@ -1,6 +1,5 @@
 package tremend.com.moviedb.viewmodels
 
-import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
@@ -8,6 +7,7 @@ import androidx.lifecycle.Transformations
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import timber.log.Timber
+import tremend.com.moviedb.AndroidApp
 import tremend.com.moviedb.data.repositories.MovieRepository
 import tremend.com.moviedb.data.vo.Genre
 import tremend.com.moviedb.data.vo.Movie
@@ -18,10 +18,11 @@ import tremend.com.moviedb.utilities.ALL_GENRE_NAME
 import tremend.com.moviedb.utilities.DEFAULT_VOTE_VALUE
 import tremend.com.moviedb.utilities.schedulers.MainScheduler
 import java.util.*
+import javax.inject.Inject
 
 
-class MovieViewModel(
-        app: Application,
+class MovieViewModel @Inject constructor(
+        app: AndroidApp,
         private val repository: MovieRepository,
         mainScheduler: MainScheduler
 ) : BaseAndroidViewModel(app, mainScheduler) {
