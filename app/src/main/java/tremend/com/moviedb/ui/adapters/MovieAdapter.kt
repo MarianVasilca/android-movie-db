@@ -6,8 +6,7 @@ import tremend.com.moviedb.data.vo.Movie
 import tremend.com.moviedb.databinding.ItemMovieRowBinding
 import tremend.com.moviedb.ui.fragments.MainFragmentDirections
 
-class MovieAdapter(
-) : DataBoundListAdapter<Movie, ItemMovieRowBinding>(
+class MovieAdapter : DataBoundListAdapter<Movie, ItemMovieRowBinding>(
         diffCallback = Movie.DIFF_CALLBACK
 ) {
     override fun getItemLayout(): Int = R.layout.item_movie_row
