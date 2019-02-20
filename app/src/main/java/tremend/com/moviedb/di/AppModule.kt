@@ -6,14 +6,13 @@ import tremend.com.moviedb.AndroidApp
 import tremend.com.moviedb.data.api.ApiService
 import tremend.com.moviedb.data.db.AppDatabase
 import tremend.com.moviedb.data.repositories.MovieRepository
-import tremend.com.moviedb.ui.adapters.MovieAdapter
 import tremend.com.moviedb.utilities.schedulers.IoScheduler
 import tremend.com.moviedb.utilities.schedulers.MainScheduler
 import tremend.com.moviedb.utilities.schedulers.NetworkScheduler
 import javax.inject.Singleton
 
 @Module(includes = arrayOf(ViewModelModule::class, ContextModule::class))
-public class AppModule {
+class AppModule {
 
     @Provides
     @Singleton
@@ -38,12 +37,6 @@ public class AppModule {
     @Singleton
     fun provideMainScheduler(): MainScheduler {
         return MainScheduler()
-    }
-
-    @Provides
-    @Singleton
-    fun provideAdapter(): MovieAdapter {
-        return MovieAdapter()
     }
 
     @Provides
