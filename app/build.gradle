@@ -65,17 +65,22 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-extensions:$rootProject.lifecycleVersion"
     kapt "androidx.lifecycle:lifecycle-compiler:$rootProject.lifecycleVersion"
     // navigation
-    implementation "android.arch.navigation:navigation-fragment-ktx:$rootProject.navigationVersion"
-    implementation "android.arch.navigation:navigation-ui-ktx:$rootProject.navigationVersion"
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.0.0'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.0.0'
 
     // Third parties libraries
+
+    //Step 1
     //di
     // Koin for Android
-    implementation "org.koin:koin-android:$rootProject.koinVersion"
-    // or Koin for Lifecycle scoping
-    implementation "org.koin:koin-androidx-scope:$rootProject.koinVersion"
-    // or Koin for Android Architecture ViewModel
-    implementation "org.koin:koin-androidx-viewmodel:$rootProject.koinVersion"
+//    implementation "org.koin:koin-android:$rootProject.koinVersion"
+//    // or Koin for Lifecycle scoping
+//    implementation "org.koin:koin-androidx-scope:$rootProject.koinVersion"
+//    // or Koin for Android Architecture ViewModel
+//    implementation "org.koin:koin-androidx-viewmodel:$rootProject.koinVersion"
+
+
+
     // Retrofit
     implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofitVersion"
@@ -93,6 +98,5 @@ dependencies {
     testImplementation "junit:junit:$rootProject.junitVersion"
     androidTestImplementation "androidx.test:runner:$rootProject.runnerVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.espressoVersion"
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.0.0'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.0.0'
+
 }

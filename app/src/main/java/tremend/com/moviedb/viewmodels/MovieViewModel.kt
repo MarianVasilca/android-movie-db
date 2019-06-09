@@ -23,7 +23,7 @@ import java.util.*
 class MovieViewModel(
         app: Application,
         private val repository: MovieRepository,
-        mainScheduler: MainScheduler
+        mainScheduler: MainScheduler = MainScheduler()
 ) : BaseAndroidViewModel(app, mainScheduler) {
 
     private val compositeDisposable = CompositeDisposable()

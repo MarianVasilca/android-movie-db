@@ -15,10 +15,10 @@ import tremend.com.moviedb.utilities.schedulers.IoScheduler
 import tremend.com.moviedb.utilities.schedulers.NetworkScheduler
 
 class MovieRepository constructor(
-        private val apiService: ApiService,
+        private val apiService: ApiService = ApiService.create(),
         private val database: AppDatabase,
-        private val networkScheduler: NetworkScheduler,
-        private val ioScheduler: IoScheduler
+        private val networkScheduler: NetworkScheduler = NetworkScheduler(),
+        private val ioScheduler: IoScheduler = IoScheduler()
 ) {
 
     fun searchMovies(filter: MovieFilter): LiveData<List<Movie>> {
